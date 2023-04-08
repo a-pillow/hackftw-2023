@@ -20,8 +20,7 @@ function App() {
 
   const primaryAxis = useMemo(
     () => ({
-      getValue: (datum) => datum.Year,
-      elementType: "time",
+      getValue: (datum) => datum.Year as Date,
     }),
 
     []
@@ -33,6 +32,7 @@ function App() {
         getValue: (datum) =>
           Number(datum["Share of global forest area"]).toFixed(3),
         elementType: "line",
+        invert: true,
         showDatumElements: false,
       },
     ],

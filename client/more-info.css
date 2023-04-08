@@ -33,7 +33,7 @@ body {
   }
   
   .container {
-    padding: 0 0;
+    padding: 0 8px;
   }
   
   .container::after, .row::after {

@@ -1,4 +1,4 @@
-//const trees = [81.59800664451828, 81.28384551495017, 80.96968438538205, 80.65552325581396, 80.34136212624584, 80.02720099667773, 79.71303986710964, 79.39887873754152, 79.08471760797342];
+//const trees = [13.900798082250809, 13.837151848248933, 13.773269218693377, 13.70914887409922, 13.644789485143285, 13.58018971257231, 13.515348207110039];
 //console.log("trees: " + trees);
 //console.log("final: " + calculate(2006, trees));
 
@@ -21,6 +21,9 @@ export function calculate(startyear, trees) {
     //console.log("div2: " + div2);
 
     var avg = average(div2);
+    avg = avg * 100;
+    avg = Math.round(avg);
+    avg = avg / 100;
     //console.log("avg: " + avg);
     var years;
     if (avg > 0) {
@@ -95,10 +98,15 @@ function expReg(trees) {
     for (var i = 0; i < trees.length; i++) {
         var lin = Math.log(trees[i]);
         linearized[i] = lin;
+        //console.log("lin: " + lin);
+
     }
 
     var diffs = div(linearized);
+    //console.log("diffs log: " + diffs);
     var slope = average(diffs);
+    //console.log("slope: " + slope);
+
 
     return -Math.round(trees[0] / slope);
 }

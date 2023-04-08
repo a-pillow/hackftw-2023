@@ -52,7 +52,7 @@ function App() {
               : ""}
           </p>
         </div>
-        <div className="ml-16 w-3/4 bg-orange-100 rounded-xl duration-200">
+        <div className="ml-16 w-3/4 py-4 px-6 bg-orange-100 rounded-xl duration-200">
           d
         </div>
       </main>

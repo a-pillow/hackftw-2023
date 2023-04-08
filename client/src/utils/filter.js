@@ -47078,7 +47078,10 @@ var obj = {
     }
    ]
 }
-const newArray = obj.countries.filter((el) => {
+export const filter = obj.countries.filter((el) => {
     return el.Year === 2020;
 });
-console.log(newArray);
+
+export const filterByCountry = (name) => {
+  return obj.countries.filter((el) => el.Entity === name)
+}

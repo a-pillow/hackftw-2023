@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { Tooltip } from "react-tooltip";
 import Data from "../utils/data.js";
-export function InteractiveMap({ data, tooltip, setTooltip }) {
+export function InteractiveMap({ tooltip, setTooltip }) {
   return (
     <div className="w-full">
       <ComposableMap projectionConfig={{ scale: 180, center: [16, -15] }}>

@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { InteractiveMap } from "./components/InteractiveMap";
 import { Navbar } from "./components/Navbar";
 import { Tooltip } from "react-tooltip";
@@ -9,32 +9,72 @@ import Data from "./utils/data";
 import axios from "axios";
 import { filter, filterByCountry } from "./utils/filter.js";
 import { calculate } from "./utils/countryCalcs.js";
+import { Chart } from "react-charts";
 
 function App() {
   const [country, setCountry] = useState("");
   const [name, setName] = useState(undefined);
   const [population, setPopulation] = useState([]);
   const [yearsTillEmpty, setYearsTillEmpty] = useState(0);
+  const [chartData, setChartData] = useState([]);
+
+  const primaryAxis = useMemo(
+    () => ({
+      getValue: (datum) => datum.Year as Date,
+    }),
+
+    []
+  );
+
+  const secondaryAxes = useMemo(
+    () => [
+      {
+        getValue: (datum) =>
+          Number(datum["Share of global forest area"]).toFixed(3),
+        elementType: "line",
+        invert: true,
+        showDatumElements: false,
+      },
+    ],
+
+    []
+  );
+
+  const sanitize = (arr) => {
+    let array = [];
+    for (const item of arr) {
+      const t = item["Share of global forest area"];
+      array = [...array, t];
+    }
+    return array;
+  };
 
   useEffect(() => {
-    const data = Data.find((el: { name: string }) => el.name === country);
-    setName(data);
-    if (data) {
-      const array = filterByCountry(data.name);
-      console.log(array);
-      let sanitized = [];
-      for (const item of array) {
-        sanitized = [...sanitized, item["Share of global forest area"]];
-      }
-      setYearsTillEmpty(calculate(0, sanitized));
+    const countryData = Data.find(
+      (el: { name: string }) => el.name === country
+    );
+    if (countryData) {
+      setName(countryData);
+      const array = filterByCountry(countryData.name);
+      setYearsTillEmpty(calculate(0, sanitize(array)));
+      setChartData([
+        {
+          label: "Coverage",
+          data: array,
+        },
+      ]);
     }
     axios
-      .get(`https://restcountries.com/v3.1/alpha/${data ? data.code : ""}`)
+      .get(
+        `https://restcountries.com/v3.1/alpha/${
+          countryData ? countryData.code : ""
+        }`
+      )
       .then((res) => {
         setPopulation(res.data[0]);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("axios error");
       });
   }, [country]);
 
@@ -51,7 +91,7 @@ function App() {
         className="font-bold opacity-80 bg-orange-500 text-white text-lg rounded-sm py-1 px-2"
         id="tooltip"
       />
-      <main className="-translate-y-28 px-16 mb-64 flex justiy-between w-full">
+      <main className="-translate-y-28 px-16 mb-4 flex justiy-between w-full">
         <div className="">
           <div id="countryInfo" className="flex justify-start items-end">
             <h1 className="text-6xl mr-1 font-bold">{name ? name.name : ""}</h1>
@@ -88,6 +128,17 @@ function App() {
           </>
         )}
       </main>
+      {name ? (
+        <Chart
+          options={{
+            data: chartData,
+            primaryAxis,
+            secondaryAxes,
+          }}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

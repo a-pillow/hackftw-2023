@@ -2,9 +2,9 @@
 //console.log("trees: " + trees);
 //console.log("final: " + calculate(2006, trees));
 
-function calculate(startyear, trees) {
+export function calculate(startyear, trees) {
     var div1 = div(trees);
-    console.log("div1: " + div1);
+    //console.log("div1: " + div1);
 
     var decrease = testDec(trees);
     if (decrease < 3 && average(div1) >= 0) {
@@ -18,23 +18,23 @@ function calculate(startyear, trees) {
     }
 
     var div2 = div(div1);
-    console.log("div2: " + div2);
+    //console.log("div2: " + div2);
 
     var avg = average(div2);
-    console.log("avg: " + avg);
+    //console.log("avg: " + avg);
     var years;
     if (avg > 0) {
         years = logReg(trees);
-        console.log("log");
+        //console.log("log");
     } else if (avg < 0) {
         years = expReg(trees);
-        console.log("exp");
+        //console.log("exp");
     } else {
         years = -Math.round(trees[0] / average(div1));
-        console.log("linear");
+        //console.log("linear");
     }
 
-    console.log("years: " + years);
+    //console.log("years: " + years);
     return startyear + years;
 
 }
@@ -42,11 +42,11 @@ function calculate(startyear, trees) {
 
 function div(data) {
     var diffs = [];
-    console.log("data: " + data);
-    console.log("length: " + data.length);
+    //console.log("data: " + data);
+    //console.log("length: " + data.length);
     for (var i = 0; i < data.length - 1; i++) {
         diffs[i] = data[i + 1] - data[i];
-        console.log("diffs[i]: " + diffs[i]);
+        //console.log("diffs[i]: " + diffs[i]);
     }
     return diffs;
 }
@@ -79,13 +79,13 @@ function logReg(trees) {
     for (var i = 0; i < trees.length; i++) {
         var lin = Math.pow(Math.E, trees[i]);
         linearized[i] = lin;
-        console.log("lin: " + lin);
+        //console.log("lin: " + lin);
     }
 
     var diffs = div(linearized);
-    console.log("diffs log: " + diffs);
+    //console.log("diffs log: " + diffs);
     var slope = average(diffs);
-    console.log("slope: " + slope);
+    //console.log("slope: " + slope);
 
     return -Math.round(trees[0] / slope);
 }

@@ -40,14 +40,21 @@ function App() {
         className="font-bold opacity-80 bg-orange-500 text-white text-lg rounded-sm py-1 px-2"
         id="tooltip"
       />
-      <main className="px-16 mb-64 w-full">
-        <div id="countryInfo" className="flex items-end w-full ">
-          <h1 className="text-6xl mr-2 font-bold">{name ? name.name : ""}</h1>
-          <p className="text-xl">{name ? name.code : ""}</p>
+      <main className="-translate-y-28 px-16 mb-64 flex justiy-between w-full">
+        <div className="w-1/4">
+          <div id="countryInfo" className="flex justify-start items-end">
+            <h1 className="text-6xl mr-1 font-bold">{name ? name.name : ""}</h1>
+            <p className="text-lg">{name ? name.code : ""}</p>
+          </div>
+          <p className="my-3">
+            {population.population
+              ? `Population: ${population.population}`
+              : ""}
+          </p>
         </div>
-        <p className="mt-5">
-          {population.population ? `Population: ${population.population}` : ""}
-        </p>
+        <div className="ml-16 w-3/4 bg-orange-100 rounded-xl duration-200">
+          d
+        </div>
       </main>
     </div>
   );

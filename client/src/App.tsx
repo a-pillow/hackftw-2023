@@ -26,7 +26,7 @@ function App() {
         data={data}
       />
       <Tooltip
-        className="font-bold opacity-100 bg-orange-500 text-white text-lg rounded-sm py-1 px-2"
+        className="font-bold opacity-80 bg-orange-500 text-white text-lg rounded-sm py-1 px-2"
         id="tooltip"
       />
       <main>

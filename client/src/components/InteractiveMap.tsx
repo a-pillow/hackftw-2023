@@ -6,7 +6,7 @@ import Data from "../utils/data.js";
 export function InteractiveMap({ data, tooltip, setTooltip }) {
   return (
     <div className="w-full">
-      <ComposableMap projectionConfig={{ scale: 180, center: [15, -15] }}>
+      <ComposableMap projectionConfig={{ scale: 180, center: [16, -15] }}>
         <Geographies geography="/countries.json">
           {({ geographies }) =>
             geographies.map((geo) => (

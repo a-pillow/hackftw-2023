@@ -1,6 +1,6 @@
-//const trees = [13.900798082250809, 13.837151848248933, 13.773269218693377, 13.70914887409922, 13.644789485143285, 13.58018971257231, 13.515348207110039];
-//console.log("trees: " + trees);
-//console.log("final: " + calculate(2006, trees));
+const trees = [13.900798082250809, 13.837151848248933, 13.773269218693377, 13.70914887409922, 13.644789485143285, 13.58018971257231, 13.515348207110039];
+console.log("trees: " + trees);
+console.log("final: " + calculate(2006, trees));
 
 export function calculate(startyear, trees) {
     var div1 = div(trees);

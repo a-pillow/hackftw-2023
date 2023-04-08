@@ -49,7 +49,7 @@ export default [
     {name: 'Colombia', code: 'CO'}, 
     {name: 'Comoros', code: 'KM'}, 
     {name: 'Congo', code: 'CG'}, 
-    {name: 'Congo, The Democratic Republic of the', code: 'CD'}, 
+    {name: 'Democratic Republic of Congo', code: 'CD'}, 
     {name: 'Cook Islands', code: 'CK'}, 
     {name: 'Costa Rica', code: 'CR'}, 
     {name: 'Cote D\'Ivoire', code: 'CI'}, 

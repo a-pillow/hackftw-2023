@@ -16,7 +16,7 @@ function App() {
   }, [country]);
 
   return (
-    <div className="h-screen overflow-auto bg-orange-200">
+    <div className="h-screen scroll-smooth overflow-auto bg-orange-200">
       <Navbar />
       <InteractiveMap
         data-tooltip-id="tooltip"
@@ -30,7 +30,7 @@ function App() {
         id="tooltip"
       />
       <main>
-        <div className="flex items-end w-full px-16 ">
+        <div id="countryInfo" className="flex items-end w-full px-16 ">
           <h1 className="text-6xl font-bold">{data ? data.name : ""}</h1>
           <p className="text-xl">{data ? data.code : ""}</p>
         </div>

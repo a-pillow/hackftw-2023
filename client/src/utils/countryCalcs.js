@@ -21,9 +21,6 @@ export function calculate(startyear, trees) {
     //console.log("div2: " + div2);
 
     var avg = average(div2);
-    avg = avg * 100;
-    avg = Math.round(avg);
-    avg = avg / 100;
     //console.log("avg: " + avg);
     var years;
     if (avg > 0) {

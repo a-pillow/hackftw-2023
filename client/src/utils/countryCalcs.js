@@ -2,7 +2,7 @@
 //console.log("trees: " + trees);
 //console.log("final: " + calculate(2006, trees));
 
-function calculate(startyear, trees) {
+export function calculate(startyear, trees) {
     var div1 = div(trees);
     console.log("div1: " + div1);
 
